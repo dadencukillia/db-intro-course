@@ -8,8 +8,8 @@ erDiagram
     TEXT password_hash  ""  
     TEXT avatar_url  ""  
     TEXT[] social_networks  ""  
-    NUMBER current_streak  ""  
-    NUMBER max_streak  ""  
+    INTEGER current_streak  ""  
+    INTEGER max_streak  ""  
     BOOLEAN watched_anime_today  ""  
     ENUM profile_frame  ""  
     ENUM profile_background  ""  
@@ -25,11 +25,11 @@ erDiagram
     TEXT cover_url  ""  
     TEXT studio  ""
     ENUM type "ona/ova/tv/movie/special"
-    NUMBER mal_id  ""  
-    NUMBER anilist_id  ""  
-    NUMBER hikka_id  ""  
-    NUMBER imdb_id  ""  
-    NUMBER episodes_duration  ""  
+    INTEGER mal_id  ""  
+    INTEGER anilist_id  ""  
+    INTEGER hikka_id  ""  
+    INTEGER imdb_id  ""  
+    INTEGER episodes_duration  ""  
     ENUM status  "anounced/ongoing/finished/dropped"  
     ENUM[] genres  "comedy/tragedy/isekai etc"  
     NUMBER year  ""  
@@ -49,35 +49,35 @@ erDiagram
     BIGSERIAL comment_id "PK"
     UUID author_id "FK"
     UUID anime_id  "FK"
-    NUMBER grade
-        TEXT content
-        DATE date
+    INTEGER grade
+    TEXT content
+    DATE date
   }
 
   room {
-        TEXT code "PK"
-        UUID[] active_users
-        TEXT[] episodes_playlist
-        UUID owner_id "FK"
-        BOOLEAN playing
-        NUMBER play_timestamp
-        NUMBER play_offset
-        BOOLEAN public
+    TEXT code "PK"
+    UUID[] active_users
+    TEXT[] episodes_playlist
+    UUID owner_id "FK"
+    BOOLEAN playing
+    INTEGER play_timestamp
+    INTEGER play_offset
+    BOOLEAN public
   }
 
   animeListUnit {
-        UUID user_id "PK FK"
-        UUID anime_id "PK FK"
-        NUMBER watched_episodes
-        NUMBER repeat_times
-        DATE watch_start
-        ENUM type "finished/watching/delayed/dropped"
+    UUID user_id "PK FK"
+    UUID anime_id "PK FK"
+    INTEGER watched_episodes
+    INTEGER repeat_times
+    DATE watch_start
+    ENUM type "finished/watching/delayed/dropped"
   }
 
   upcomingEpisodes {
-        UUID anime_id "PK FK"
-        DATE episode_date
-        TEXT episode_name "PK" 
+    UUID anime_id "PK FK"
+    DATE episode_date
+    TEXT episode_name "PK" 
   }
 
   anime ||--O{ animeListUnit : "Animes are present in many users' list (associative entity)"
