@@ -37,10 +37,10 @@ erDiagram
   }
 
   episode {
-    TEXT source_url  "PK"  
+    BIGSERIAL id "PK"
+    TEXT source_url  ""  
     UUID anime_id  "FK"  
     TEXT episode  ""
-    TEXT season  "" 
     TEXT studio  ""
     ENUM type  "dub/sub"  
   }
@@ -57,7 +57,7 @@ erDiagram
   room {
     TEXT code "PK"
     UUID[] active_users
-    TEXT[] episodes_playlist
+    BIGINT[] episodes_playlist
     UUID owner_id "FK"
     BOOLEAN playing
     INTEGER play_timestamp
