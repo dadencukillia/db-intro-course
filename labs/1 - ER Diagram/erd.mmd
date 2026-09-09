@@ -1,4 +1,4 @@
-erDiagram
+  erDiagram
   user {
     UUID id  "PK"  
     VARCHAR(30) nickname  "UK"  
@@ -32,8 +32,8 @@ erDiagram
     INTEGER episodes_duration  ""  
     ENUM status  "anounced/ongoing/finished/dropped"  
     ENUM[] genres  "comedy/tragedy/isekai etc"  
-    INTEGER year  ""  
-    INTEGER pegi_age_restriction  ""  
+    NUMBER year  ""  
+    NUMBER pegi_age_restriction  ""  
   }
 
   episode {
@@ -76,7 +76,7 @@ erDiagram
 
   upcomingEpisodes {
     UUID anime_id "PK FK"
-    DATE episode_date
+    TIMESTAMP episode_date
     TEXT episode_name "PK" 
   }
 
@@ -89,3 +89,4 @@ erDiagram
   anime ||--O{ comment : "One anime is able to have many comments"
   anime ||--O{ episode : "One anime has many episodes (or doesn't if it's only anounced)"
   anime ||--O{ upcomingEpisodes : "One ongoing anime is able to have many upcoming episodes"
+
