@@ -1,4 +1,4 @@
-  erDiagram
+erDiagram
   user {
     UUID id  "PK"  
     VARCHAR(30) nickname  "UK"  
@@ -32,8 +32,8 @@
     INTEGER episodes_duration  ""  
     ENUM status  "anounced/ongoing/finished/dropped"  
     ENUM[] genres  "comedy/tragedy/isekai etc"  
-    NUMBER year  ""  
-    NUMBER pegi_age_restriction  ""  
+    INTEGER year  ""  
+    INTEGER pegi_age_restriction  ""  
   }
 
   episode {
@@ -60,7 +60,7 @@
     BIGINT[] episodes_playlist
     UUID owner_id "FK"
     BOOLEAN playing
-    INTEGER play_timestamp
+    TIMESTAMP play_timestamp
     INTEGER play_offset
     BOOLEAN public
   }
