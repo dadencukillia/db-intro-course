@@ -1,92 +1,116 @@
 erDiagram
-  user {
-    UUID id  "PK"  
+  users {
+    UUID user_id  "PK"
     VARCHAR(30) nickname  "UK"  
     VARCHAR(100) name  ""  
-    TEXT email  "UK"  
+    TEXT email  "UK"        
+    TEXT google_id ""
     TEXT bio  ""  
     TEXT password_hash  ""  
     TEXT avatar_url  ""  
     TEXT[] social_networks  ""  
-    INTEGER current_streak  ""  
     INTEGER max_streak  ""  
-    BOOLEAN watched_anime_today  ""  
-    ENUM profile_frame  ""  
-    ENUM profile_background  ""  
+    TEXT timezone  ""
+    DATE last_watch_date ""  
+    TEXT profile_frame_url  ""  
+    TEXT profile_background_url  ""
+    ENUM status "default/admin/banned etc."  
+    TIMESTAMP created_at ""
+    TIMESTAMP updated_at ""
   }
 
-  anime {
-    UUID id  "PK"  
+  animes {
+    UUID anime_id  "PK"  
     TEXT slug  "UK"  
     TEXT title_ua  ""  
     TEXT title_en  ""  
     TEXT title_original  ""  
     TEXT description  ""  
     TEXT cover_url  ""  
-    TEXT studio  ""
-    ENUM type "ona/ova/tv/movie/special"
+    TEXT production_studio  ""
     INTEGER mal_id  ""  
     INTEGER anilist_id  ""  
     INTEGER hikka_id  ""  
     INTEGER imdb_id  ""  
-    INTEGER episodes_duration  ""  
+    INTEGER year  ""
+    INTEGER avg_episode_duration  ""  
+    INTEGER pegi_age_restriction  ""
+    ENUM anime_format "ona/ova/tv/movie/special"
     ENUM status  "anounced/ongoing/finished/dropped"  
-    ENUM[] genres  "comedy/tragedy/isekai etc"  
-    INTEGER year  ""  
-    INTEGER pegi_age_restriction  ""  
   }
 
-  episode {
-    BIGSERIAL id "PK"
-    TEXT source_url  ""  
-    UUID anime_id  "FK"  
-    TEXT episode  ""
-    TEXT studio  ""
-    ENUM type  "dub/sub"  
+  genres {
+    INTEGER genre_id "PK"
+    ENUM genre_name "comedy/tragedy/isekai etc."
   }
-
-  comment {
+  
+  animeListUnits {
+    UUID user_id "PK FK"
+    UUID anime_id "PK FK"
+    INTEGER watched_episodes ""
+    INTEGER repeat_times ""
+    DATE started_watching ""
+    ENUM status "finished/watching/delayed/dropped"
+  }
+  
+  comments {
     BIGSERIAL comment_id "PK"
     UUID author_id "FK"
     UUID anime_id  "FK"
-    INTEGER grade
-    TEXT content
-    DATE date
+    INTEGER grade ""
+    TEXT content ""
+    DATE date ""
   }
 
-  room {
-    TEXT code "PK"
-    UUID[] active_users
-    BIGINT[] episodes_playlist
-    UUID owner_id "FK"
-    BOOLEAN playing
-    TIMESTAMP play_timestamp
-    INTEGER play_offset
-    BOOLEAN public
-  }
-
-  animeListUnit {
-    UUID user_id "PK FK"
-    UUID anime_id "PK FK"
-    INTEGER watched_episodes
-    INTEGER repeat_times
-    DATE watch_start
-    ENUM type "finished/watching/delayed/dropped"
+  episodes {
+    BIGSERIAL episode_id "PK"
+    UUID anime_id  "FK"
+    TEXT source_url  ""  
+    TEXT episode_name  ""
+    TEXT localization_studio  ""
+    ENUM localization_type  "dub/sub"  
   }
 
   upcomingEpisodes {
     UUID anime_id "PK FK"
-    TIMESTAMP episode_date
     TEXT episode_name "PK" 
+    TIMESTAMP episode_date ""
+  }
+  
+  rooms_REDIS_ {
+    TEXT room_code "PK"
+    UUID owner_id "FK"
+    UUID[] participants ""
+    BIGINT[] playlist ""
+    TIMESTAMP play_timestamp ""
+    INTEGER play_offset ""
+    BOOLEAN playing ""
+    BOOLEAN public ""
   }
 
-  anime ||--O{ animeListUnit : "Animes are present in many users' list (associative entity)"
-  user ||--O{ animeListUnit : "Each user has many animes in his list (associative entity)" 
-  room |O--|{ user : "Multiple users participate in one room"
-  room |O--|| user : "Each room belongs to user"
-  room }O--O{ episode : "Multiple episodes in the room's playlist"
-  user ||--O{ comment : "Users are able to write many comments"
-  anime ||--O{ comment : "One anime is able to have many comments"
-  anime ||--O{ episode : "One anime has many episodes (or doesn't if it's only anounced)"
-  anime ||--O{ upcomingEpisodes : "One ongoing anime is able to have many upcoming episodes"
+  sessions {
+    BIGSERIAL session_id "PK"
+    UUID user_id "FK"
+    TEXT external_refresh_token ""
+    TEXT internal_refresh_token ""
+    ENUM auth_provider "google/facebook etc."
+    TEXT device_type ""
+    TEXT device_name ""
+    TEXT os ""
+    TEXT browser ""
+    TEXT user_agent ""
+    INET ip_adress ""
+    TEXT location ""
+  }
 
+  users ||--O{ comments : "writes"
+  users ||--O{ animeListUnits : "associates"
+  users ||--O{ sessions : "authorizes"   
+  animes ||--O{ animeListUnits : "associates"
+  animes ||--O{ comments : "has"
+  animes ||--O{ episodes : "has"
+  animes ||--O{ upcomingEpisodes : "has"
+  animes }O--O{ genres : "has"
+  rooms_REDIS_ |O--|{ users : "has"
+  rooms_REDIS_ |O--|| users : "owned by"
+  rooms_REDIS_ }O--O{ episodes : "playing"
