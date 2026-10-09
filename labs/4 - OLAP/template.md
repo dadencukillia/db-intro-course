@@ -1,106 +1,164 @@
-# olap_queries by @user
+# OLAP Queries by @user
 
 ## ❇️ Create table
-Мета, очікуваний результат, результат
 
-```SQL
+Мета, очікуваний результат, чи успішно виконано
+
+```sql
 ```
 
 ## 🗑 Drop table
 
--- [DROP TABLE] Безпечне видалення таблиці в межах транзакції (BEGIN; DROP TABLE ...; COMMIT;)
+Мета, очікуваний результат, чи успішно виконано
+
+```sql
+```
 
 ## ✨ Insert queries
 
-IDs
-``
+### IDs
 
-``
+- ``
+- ``
+- ``
 
-``
+### All columns
 
-## All colums
+Мета, очікуваний результат, чи успішно виконано
 
--- [INSERT ALL] Додавання запису з заповненням усіх полів
+```sql
+```
 
-### Mandatory only colums
+### Mandatory-only columns
 
--- [INSERT DEFAULT] Додавання запису з заповненням тільки обов'язкових полів
+Мета, очікуваний результат, чи успішно виконано
 
-## With returning part (RETURNING, optional)
+```sql
+```
 
--- [INSERT RETURNING] Додавання запису з поверненням згенерованих значень (RETURNING)
+### With `RETURNING` (optional)
 
-## Some interesting examples (optional)
+Мета, очікуваний результат, чи успішно виконано
 
--- [INSERT ... SELECT] Вставка аналітичних даних з іншої таблиці на основі підзапиту
--- [INSERT WITH INTERVAL] Вставка даних з використанням обчислюваних дат (now() + INTERVAL)
+```sql
+```
 
-## 📨 Select queries (OLAP & Analytics)
-Select all entries (no WHERE, all fields)
+### Some interesting examples (optional)
 
--- [SELECT ALL] Базовий перегляд усіх записів таблиці
+Мета, очікуваний результат, чи успішно виконано
 
-## Select public only info (no WHERE, specified fields - COUNT, SUM, AVG, MIN, MAX)
+```sql
+```
 
--- [BASIC AGGREGATION] Запит із використанням агрегатних функцій (COUNT, SUM, AVG, MIN, MAX) без GROUP BY
+Мета, очікуваний результат, чи успішно виконано
 
-## API production example
-GET /api/v1/resource/:id/analytics
+```sql
+```
 
--- [API ANALYTICS] Аналітична вибірка для конкретного ID (LEFT JOIN + GROUP BY + Агрегації)
+## 📨 Select queries (OLAP and analytics)
 
-## Some interesting examples (optional)
-[ ] ORDER BY
+### Select all entries (no `WHERE`, all fields)
 
-[ ] LIMIT
+Мета, очікуваний результат, чи успішно виконано
 
-[ ] OFFSET
+```sql
+```
 
-[ ] JOIN (INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN, CROSS JOIN)
+### Select public information only (no `WHERE`, specified fields)
 
-[ ] GROUP BY
+Мета, очікуваний результат, чи успішно виконано
 
-[ ] HAVING
+```sql
+```
 
-[ ] SUBQUERIES (in SELECT, WHERE, or HAVING)
+### API production example
 
--- [GROUP BY + HAVING + INNER JOIN] Групування, обчислення агрегатів та фільтрація груп через HAVING
+`GET /api/v1/resource/:id/analytics`
 
--- [SUBQUERY IN WHERE + LEFT JOIN] Об'єднання таблиць із фільтрацією результатів через підзапит (наприклад, WHERE col > (SELECT AVG...))
+Мета, очікуваний результат, чи успішно виконано
 
--- [FULL OUTER JOIN / CROSS JOIN] Використання складних типів з'єднань або підзапиту в блоці SELECT
+```sql
+```
+
+### Some interesting examples (optional)
+
+- [ ] `ORDER BY`
+- [ ] `LIMIT`
+- [ ] `OFFSET`
+- [ ] `JOIN` (`INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`, `FULL JOIN`, `CROSS JOIN`)
+- [ ] `GROUP BY`
+- [ ] `HAVING`
+- [ ] Subqueries in `SELECT`, `WHERE` or `HAVING`
+
+Мета, очікуваний результат, чи успішно виконано
+
+```sql
+```
+
+Мета, очікуваний результат, чи успішно виконано
+
+```sql
+```
 
 ## 🔄 Update queries
-Update some fields (WHERE)
 
--- [UPDATE WHERE] Оновлення полів із простим фільтром WHERE
+### Update some fields (`WHERE`)
 
-Update fields returning values (WHERE, RETURNING)
+Мета, очікуваний результат, чи успішно виконано
 
--- [UPDATE RETURNING] Оновлення записів із поверненням змінених полів (RETURNING)
+```sql
+```
 
-## Some interesting examples (optional)
+### Update fields and return values (`WHERE`, `RETURNING`)
 
--- [UPDATE WITH SUBQUERY IN SET] Оновлення поля значенням, обчисленим через підзапит
+Мета, очікуваний результат, чи успішно виконано
 
--- [UPDATE WITH SUBQUERY IN WHERE] Масове оновлення за умовою з підзапитом (IN / EXISTS)
+```sql
+```
+
+### Some interesting examples (optional)
+
+Мета, очікуваний результат, чи успішно виконано
+
+```sql
+```
+
+Мета, очікуваний результат, чи успішно виконано
+
+```sql
+```
 
 ## ⛔ Delete queries
-Clear table (no WHERE)
 
--- [DELETE ALL] Очищення всієї таблиці
+### Clear table (no `WHERE`)
 
-Delete with filter (WHERE)
+Мета, очікуваний результат, чи успішно виконано
 
--- [DELETE WHERE] Видалення записів за датою чи фільтром
+```sql
+```
 
-Delete and return (WHERE, RETURNING)
+### Delete with a filter (`WHERE`)
 
--- [DELETE RETURNING] Видалення записів із поверненням інформації про вилучені рядки
+Мета, очікуваний результат, чи успішно виконано
 
-Some interesting examples (optional)
+```sql
+```
 
--- [DELETE NOT EXISTS] Видалення застарілих даних за допомогою перевірки зв'язку NOT EXISTS
+### Delete and return values (`WHERE`, `RETURNING`)
 
--- [DELETE WITH SUBQUERY IN] Видалення записів із фільтрацією через підзапит у WHERE
+Мета, очікуваний результат, чи успішно виконано
+
+```sql
+```
+
+### Some interesting examples (optional)
+
+Мета, очікуваний результат, чи успішно виконано
+
+```sql
+```
+
+Мета, очікуваний результат, чи успішно виконано
+
+```sql
+```
