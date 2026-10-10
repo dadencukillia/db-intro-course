@@ -34,8 +34,8 @@ SELECT
     count(*) AS total_count_animes
 FROM public.animes
 WHERE 
-    available = TRUE
-    AND anime_status IS NOT NULL
+    available = TRUE AND
+    anime_status IS NOT NULL
 GROUP BY anime_status;
 ```
 
@@ -49,12 +49,26 @@ WHERE
 GROUP BY episode_count;
 ```
 
+```SQL
 SELECT 
   production_studio,
-  DISTINCT COUNT(anime_id) AS total_animes,
-  SUM(episodes_count) AS total_episodes,
-  ROUND(AVG(avg_episode_duration), 1) AS avg_duration
+  DISTINCT count(anime_id) AS total_animes,
+  sum(episodes_count) AS total_episodes,
+  round(avg(avg_episode_duration), 1) AS avg_duration
 FROM animes
 WHERE production_studio IS NOT NULL
 GROUP BY production_studio
 ORDER BY total_episodes DESC;
+```
+
+```SQL
+SELECT 
+    anime_format,
+    count(anime_id) AS total_titles,
+    round(avg(episodes_count), 1) AS avg_episodes,
+    max(episodes_count) AS max_episodes,
+    min(episodes_count) AS min_episodes
+FROM public.animes
+GROUP BY anime_format;
+```
+
