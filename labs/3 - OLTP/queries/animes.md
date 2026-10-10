@@ -270,8 +270,7 @@ FROM public.animes
 WHERE 
     available = TRUE
     AND (
-        cover_url IS NULL
-        OR cover_url = ''
+        cover_url = ''
         OR anime_description = ''
     );
 ```
@@ -373,9 +372,9 @@ DELETE FROM public.animes
 WHERE
     anime_status = 'finished'
     AND (
-        anime_description <> ''
+        anime_description = ''
         OR production_studio IS NULL
-        OR production_studio <> ''
+        OR production_studio = ''
     ) 
 RETURNING anime_id, slug, title_ua;
 ```

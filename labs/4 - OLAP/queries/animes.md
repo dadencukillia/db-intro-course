@@ -27,3 +27,34 @@ CREATE TABLE IF NOT EXISTS public.animes(
 
 CREATE INDEX IF NOT EXISTS idx_anime_available ON public.animes(available);
 ```
+
+```SQL
+SELECT 
+    anime_status,
+    count(*) AS total_count_animes
+FROM public.animes
+WHERE 
+    available = TRUE
+    AND anime_status IS NOT NULL
+GROUP BY anime_status;
+```
+
+```SQL
+SELECT episode_count,
+    count(*) AS total_count_episodes
+FROM public.animes, episodes
+WHERE 
+    available = TRUE
+    AND episodes.anime_id = animes.anime_id
+GROUP BY episode_count;
+```
+
+SELECT 
+  production_studio,
+  DISTINCT COUNT(anime_id) AS total_animes,
+  SUM(episodes_count) AS total_episodes,
+  ROUND(AVG(avg_episode_duration), 1) AS avg_duration
+FROM animes
+WHERE production_studio IS NOT NULL
+GROUP BY production_studio
+ORDER BY total_episodes DESC;
