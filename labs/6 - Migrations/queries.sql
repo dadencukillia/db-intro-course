@@ -30,40 +30,31 @@ INSERT INTO animes (
 ('44444444-4444-4444-4444-444444444444', 'spy-x-family',
  'Сім''я шпигуна', 'Spy x Family', 'SPY×FAMILY',
  'https://example.com/covers/spy-x-family.jpg', 'Wit Studio, CloverWorks',
- 50265, 140960, 2022, 24, 37, 'pg13', 'ongoing', 'tv', true),
-
-('55555555-5555-5555-5555-555555555555', 'demo-upcoming-movie',
- 'Демо: Майбутній фільм', 'Demo: Upcoming Movie', 'デモ映画',
- NULL, 'Demo Studio',
- NULL, NULL, 2027, 110, 1, 'pg', 'upcoming', 'movie', true);
+ 50265, 140960, 2022, 24, 37, 'pg13', 'ongoing', 'tv', true);
 
 -- genres
-INSERT INTO genres (anime_id, genre_type, is_primary) VALUES
-('11111111-1111-1111-1111-111111111111', 'adventure', true),
-('11111111-1111-1111-1111-111111111111', 'fantasy',   false),
-('11111111-1111-1111-1111-111111111111', 'drama',     false),
+INSERT INTO genres (anime_id, genre_type) VALUES
+('11111111-1111-1111-1111-111111111111', 'adventure'),
+('11111111-1111-1111-1111-111111111111', 'fantasy'),
+('11111111-1111-1111-1111-111111111111', 'drama'),
 
-('22222222-2222-2222-2222-222222222222', 'sci_fi',    true),
-('22222222-2222-2222-2222-222222222222', 'action',    false),
-('22222222-2222-2222-2222-222222222222', 'adventure', false),
+('22222222-2222-2222-2222-222222222222', 'sci_fi'),
+('22222222-2222-2222-2222-222222222222', 'action'),
+('22222222-2222-2222-2222-222222222222', 'adventure'),
 
-('33333333-3333-3333-3333-333333333333', 'sci_fi',    true),
-('33333333-3333-3333-3333-333333333333', 'thriller',  false),
-('33333333-3333-3333-3333-333333333333', 'drama',     false),
+('33333333-3333-3333-3333-333333333333', 'sci_fi'),
+('33333333-3333-3333-3333-333333333333', 'thriller'),
+('33333333-3333-3333-3333-333333333333', 'drama'),
 
-('44444444-4444-4444-4444-444444444444', 'comedy',    true),
-('44444444-4444-4444-4444-444444444444', 'action',    false),
-('44444444-4444-4444-4444-444444444444', 'slice_of_life', false),
-
-('55555555-5555-5555-5555-555555555555', 'fantasy',   true),
-('55555555-5555-5555-5555-555555555555', 'adventure', false);
+('44444444-4444-4444-4444-444444444444', 'comedy'),
+('44444444-4444-4444-4444-444444444444', 'action'),
+('44444444-4444-4444-4444-444444444444', 'slice_of_life');
 
 -- upcoming_episodes
 INSERT INTO upcoming_episodes (anime_id, episode_name, episode_date) VALUES
 ('44444444-4444-4444-4444-444444444444', 'Серія 38', now() + interval '2 days'),
 ('44444444-4444-4444-4444-444444444444', 'Серія 39', now() + interval '9 days'),
-('44444444-4444-4444-4444-444444444444', 'Серія 40', now() + interval '16 days'),
-('55555555-5555-5555-5555-555555555555', 'Прем''єра фільму', now() + interval '60 days');
+('44444444-4444-4444-4444-444444444444', 'Серія 40', now() + interval '16 days');
 
 -- episodes
 INSERT INTO episodes (anime_id, source_url, episode_name, localization_studio, localization_type) VALUES

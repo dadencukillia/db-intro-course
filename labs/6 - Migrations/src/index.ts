@@ -22,7 +22,7 @@ async function main() {
       animeFormat: "tv",
       genres: {
         create: [
-          { genreType: "adventure", isPrimary: true },
+          { genreType: "adventure" },
           { genreType: "fantasy" },
           { genreType: "drama" },
         ],
@@ -45,7 +45,7 @@ async function main() {
       titleUa: true,
       coverUrl: true,
       yearReleased: true,
-      genres: { select: { genreType: true, isPrimary: true } },
+      genres: { select: { genreType: true } },
     },
     orderBy: { yearReleased: "desc" },
     skip: 0,
